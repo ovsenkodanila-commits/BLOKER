@@ -16,10 +16,8 @@ jobs:
         
     - name: Build with Gradle
       run: |
-        curl -L https://raw.githubusercontent.com/gradle/gradle/master/gradle/wrapper/gradle-wrapper.jar -o gradle/wrapper/gradle-wrapper.jar
         chmod +x gradlew
-        # Добавляем --stacktrace, чтобы он вывалил нам всю правду об ошибке
-        ./gradlew clean assembleDebug --no-daemon --no-configuration-cache --stacktrace
+        ./gradlew assembleDebug --no-daemon
         
     - name: Upload APK
       uses: actions/upload-artifact@v4
