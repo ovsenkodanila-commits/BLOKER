@@ -7,3 +7,12 @@ plugins {
   alias(libs.plugins.secrets) apply false
   alias(libs.plugins.google.services) apply false
 }
+
+// Add repositories for all subprojects
+allprojects {
+  repositories {
+    google()
+    mavenCentral()
+    maven(url = "https://plugins.gradle.org/m2/")
+  }
+}
