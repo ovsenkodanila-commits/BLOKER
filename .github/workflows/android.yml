@@ -1,34 +1,27 @@
 name: Android CI
 
-on:
-  push:
-    branches: [ "main", "master" ]
-  pull_request:
-    branches: [ "main", "master" ]
-
-permissions:
-  contents: read
+on: [push, pull_request]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout the code
-      uses: actions/checkout@v4
-
+    - uses: actions/checkout@v4
+    
     - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'temurin'
-
+        
     - name: Build with Gradle
       run: |
+        # Скачиваем официальный wrapper, если он отсутствует или поврежден
+        curl -L https://raw.githubusercontent.com/gradle/gradle/master/gradle/wrapper/gradle-wrapper.jar -o gradle/wrapper/gradle-wrapper.jar
         chmod +x gradlew
-        ./gradlew clean assembleDebug
-
-    - name: Upload Debug APK
+        ./gradlew assembleDebug --no-daemon
+        
+    - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: app-debug
