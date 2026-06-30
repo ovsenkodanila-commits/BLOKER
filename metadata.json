@@ -1,0 +1,6 @@
+{
+  "name": "App Locker",
+  "description": "Protect your selected apps using a secure PIN code via Android AccessibilityService.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

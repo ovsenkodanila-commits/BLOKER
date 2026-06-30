@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">App Locker</string>
+    <string name="accessibility_service_description">This service is required to detect when protected apps are launched, allowing App Locker to block access and present the secure PIN entry screen. No personal data is collected or transmitted.</string>
+</resources>
