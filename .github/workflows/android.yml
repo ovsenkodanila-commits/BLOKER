@@ -14,10 +14,15 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         
+    - name: Prepare Gradle Wrapper
+      run: |
+        mkdir -p gradle/wrapper
+        curl -L https://raw.githubusercontent.com/gradle/gradle/master/gradle/wrapper/gradle-wrapper.jar -o gradle/wrapper/gradle-wrapper.jar
+        chmod +x gradlew
+        
     - name: Build with Gradle
       run: |
-        chmod +x gradlew
-        ./gradlew assembleDebug --no-daemon
+        ./gradlew assembleDebug --no-daemon --no-configuration-cache
         
     - name: Upload APK
       uses: actions/upload-artifact@v4
