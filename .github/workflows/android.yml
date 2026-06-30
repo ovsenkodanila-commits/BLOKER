@@ -16,10 +16,11 @@ jobs:
         
     - name: Build with Gradle
       run: |
-        # Скачиваем официальный wrapper, если он отсутствует или поврежден
+        # Скачиваем свежий wrapper, чтобы избежать ошибок с jar-файлами
         curl -L https://raw.githubusercontent.com/gradle/gradle/master/gradle/wrapper/gradle-wrapper.jar -o gradle/wrapper/gradle-wrapper.jar
         chmod +x gradlew
-        ./gradlew assembleDebug --no-daemon
+        # Отключаем проблемный кэш конфигурации
+        ./gradlew assembleDebug --no-daemon --no-configuration-cache
         
     - name: Upload APK
       uses: actions/upload-artifact@v4
